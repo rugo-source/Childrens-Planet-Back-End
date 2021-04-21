@@ -1,0 +1,14 @@
+{
+  "name": "children-backend",
+  "version": "1.0.0",
+  "description": "myfirst page",
+  "main": "server.js",
+  "author": "Ruben,Braulio ",
+  "license": "MIT",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "sequelize": "^6.6.2"
+  }
+}
