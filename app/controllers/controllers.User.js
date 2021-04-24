@@ -15,16 +15,15 @@ exports.create = async (req, res) => {
   const userData = await User.create(user)
   if (useData.ok === true){
     console.log(Hola);
-  }
-  /*  .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
+    res.send(userData);
+  }else{
+    res.status(500).send({
         message:
-          err.message || " Some erros ocurred while creating Solicitante",
+          userData.message|| " Some erros ocurred while creating Solicitante",
       });
-    });*/
+  }
+
+  
 
 };
 
