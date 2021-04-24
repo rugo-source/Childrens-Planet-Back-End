@@ -12,8 +12,11 @@ exports.create = async (req, res) => {
     password,
     role: req.body.role,
   };
-  User.create(user)
-    .then((data) => {
+  const userData = await User.create(user)
+  if (useData.ok === true){
+    console.log(Hola);
+  }
+  /*  .then((data) => {
       res.send(data);
     })
     .catch((err) => {
@@ -21,7 +24,8 @@ exports.create = async (req, res) => {
         message:
           err.message || " Some erros ocurred while creating Solicitante",
       });
-    });
+    });*/
+
 };
 
 exports.findOne = async (req, res) => {
