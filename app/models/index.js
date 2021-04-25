@@ -22,4 +22,5 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Users = require("./user")(sequelize, Sequelize);
+db.Users = require("./game")(sequelize, Sequelize);
 module.exports = db;
