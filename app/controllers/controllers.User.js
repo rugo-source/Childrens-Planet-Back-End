@@ -1,30 +1,23 @@
 const db = require("./../models");
-// const User = db.User;
+const Users = db.Users;
 const { encrypt, validate } = require("./controllers.encrypt");
 
 exports.create = async (req, res) => {
-  const password = await encrypt(req.body.password);
-  const user = {
-    name: req.body.name,
-    domicilio: req.body.domicilio,
-    email: req.body.email,
-    age: req.body.age,
-    password,
-    role: req.body.role,
-  };
-  const userData = await User.create(user)
-  if (useData.ok === true){
-    console.log(Hola);
-    res.send(userData);
-  }else{
-    res.status(500).send({
-        message:
-          userData.message|| " Some erros ocurred while creating Solicitante",
-      });
+  try {
+    const password = await encrypt(req.body.password);
+    const user = {
+      name: req.body.name,
+      domicilio: req.body.domicilio,
+      email: req.body.email,
+      age: req.body.age,
+      password,
+      role: req.body.role,
+    };
+    const usersData = await Users.create(user);
+    res.status(200).send(usersData);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-
-  
-
 };
 
 exports.findOne = async (req, res) => {
@@ -32,7 +25,7 @@ exports.findOne = async (req, res) => {
   const password = req.body.password;
   let validatePassword;
 
-  const user = await User.findOne({
+  const user = await Users.findOne({
     where: { email },
   });
   !user

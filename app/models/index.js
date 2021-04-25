@@ -14,7 +14,7 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
 	operatorsAliases: false,
 	pool,
 	define: {
-		timestamp: false,
+		timestamps: false,
 	},
 });
  const db = {};
