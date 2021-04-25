@@ -22,9 +22,6 @@ exports.create = async (req, res) => {
           userData.message|| " Some erros ocurred while creating Solicitante",
       });
   }
-
-  
-
 };
 
 exports.findOne = async (req, res) => {
