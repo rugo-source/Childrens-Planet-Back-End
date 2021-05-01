@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
 		day: {
 			type: Sequelize.STRING,
 		},
+   		 peopleCapacity:{
+			type: Sequelize.INTEGER,
+		},
 	});
 	return Reservation;
 };

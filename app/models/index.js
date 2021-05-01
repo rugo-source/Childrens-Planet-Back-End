@@ -24,12 +24,20 @@ db.sequelize = sequelize;
 db.Users = require("./user")(sequelize, Sequelize);
 db.Game = require("./game")(sequelize, Sequelize);
 db.Reservation = require("./reservation")(sequelize, Sequelize);
+db.Entry=require("./entry")(sequelize,Sequelize);
+db.Exit=require("./exit")(sequelize,Sequelize);
 
+//relacion
 db.Users.hasMany(db.Reservation, { as: "Reservation" });
 db.Reservation.belongsTo(db.Users, {
 	foreingKey: "emailid",
 	as : "email"
 })
 
+db.Reservation.hasMany(db.Game, { as: "Game" });
+db.Game.belongsTo(db.Reservation, {
+	foreingKey: "nameid",
+	as : "name"
+})
 
 module.exports = db;

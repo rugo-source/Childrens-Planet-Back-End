@@ -3,9 +3,6 @@ module.exports = (sequelize, Sequelize) => {
 		category: {
 			type: Sequelize.INTEGER,
 		},
-		name: {
-			type: Sequelize.STRING,
-		},
 		amount: {
 			type: Sequelize.INTEGER,
 		},

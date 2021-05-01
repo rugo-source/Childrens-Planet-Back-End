@@ -1,5 +1,5 @@
 const db = require("./../models");
-// const User = db.User;
+ const User = db.Reservation;
 const { encrypt, validate } = require("./controllers.encrypt");
 
 exports.create = async (req, res) => {
@@ -8,8 +8,9 @@ exports.create = async (req, res) => {
     horario: req.body.horario,
     day: req.body.day,
     game: req.body.game,
+    peopleCapacity:req.body.peopleCapacity,
   };
-  const reservationData = await User.create(reservation)
+  const reservationData = await Reservation.create(reservation)
   if (reservationData.ok === true){
     console.log(Hola);
     res.send(reservationData);
