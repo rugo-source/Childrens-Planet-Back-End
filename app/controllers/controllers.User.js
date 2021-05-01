@@ -1,7 +1,7 @@
 const db = require("./../models");
 const Users = db.Users;
 const { encrypt, validate } = require("./controllers.encrypt");
-
+//create
 exports.create = async (req, res) => {
   try {
     const password = await encrypt(req.body.password);
@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
+//login
 exports.findOne = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -35,3 +35,11 @@ exports.findOne = async (req, res) => {
         ? res.status(400).json({ error: "invalid password" })
         : res.send(user));
 };
+
+//update
+exports.update=async (req, res)=>{
+const  Users.update = 
+
+};
+
+//destroy
