@@ -17,10 +17,19 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
 		timestamps: false,
 	},
 });
- const db = {};
+const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Users = require("./user")(sequelize, Sequelize);
-db.Users = require("./game")(sequelize, Sequelize);
+db.Game = require("./game")(sequelize, Sequelize);
+db.Reservation = require("./reservation")(sequelize, Sequelize);
+
+db.Users.hasMany(db.Reservation, { as: "Reservation" });
+db.Reservation.belongsTo(db.Users, {
+	foreingKey: "emailid",
+	as : "email"
+})
+
+
 module.exports = db;
