@@ -37,9 +37,15 @@ exports.findOne = async (req, res) => {
 };
 
 //update
-exports.update=async (req, res)=>{
-const  Users.update = 
+exports.update = async (req, res) => {
+  try {
+    const email = req.body.email;
 
+    const user = await User.update(req.body, { where: { email } });
+  }catch(err){
+
+    res.status(500).json({message: err.message})
+  }
 };
 
 //destroy

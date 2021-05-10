@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const {
 	create,
-	findOne,	
+	findOne,
+	update
 } = require("./../controllers/controllers.User.js");
 
 router.post("/registro", create);
 router.post("/login", findOne);
+router.put("/update", update);
 
 module.exports = router;

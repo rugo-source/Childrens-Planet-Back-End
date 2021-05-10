@@ -14,7 +14,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 //db.sequelize.sync({ force: true }).then(() => {
- //console.log("Drop and rebuild DB");
+//console.log("Drop and rebuild DB");
 //});
 db.sequelize.sync();
 
