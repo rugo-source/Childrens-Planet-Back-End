@@ -8,7 +8,7 @@ const {
 
 router.post("/registro", create);
 router.post("/login", findOne);
-router.put("/update/:email", update);
-router.get("/delete/:email", destroy);
+router.put("/update/", update);
+router.get("/delete/", destroy);
 
 module.exports = router;

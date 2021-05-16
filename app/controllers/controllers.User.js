@@ -46,12 +46,14 @@ exports.update = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
+//find all
+exports.findAll = async(sec)
 //destroy
 exports.delete = async (req, res) => {
   try {
     const email = req.body.email;
-    const user = await User.delete(req.body, { where: { email } });
+    const user = await User.destroy(req.body, { where: { email } });
+    res.status(200).json({ message: "users was delete" });
   } catch (error) {
     res.status(500).json({ message: err.message });
   }
