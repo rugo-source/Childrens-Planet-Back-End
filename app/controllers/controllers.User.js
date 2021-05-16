@@ -47,7 +47,17 @@ exports.update = async (req, res) => {
   }
 };
 //find all
-//exports.findAll = async(sec)
+exports.findAll = async (req, res) => {
+  const email = req.query.email;
+
+  Users.findAll({ where: email })
+    .then((user) => {
+      res.send(user);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+};
 //destroy
 exports.eraser = async (req, res) => {
   try {

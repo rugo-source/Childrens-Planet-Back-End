@@ -1,5 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
 	const Game = sequelize.define("game", {
+		names: {
+			type: Sequelize.STRING,
+		},
 		category: {
 			type: Sequelize.INTEGER,
 		},
