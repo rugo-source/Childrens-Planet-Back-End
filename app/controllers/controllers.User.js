@@ -47,25 +47,14 @@ exports.update = async (req, res) => {
   }
 };
 //find all
-exports.findAll = async (req, res) => {
-  const email = req.query.email;
-
-  Users.findAll({ where: email })
-    .then((user) => {
-      res.send(user);
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
-    });
-};
-
+//exports.findAll = async(sec)
 //destroy
-exports.delete = async (req, res) => {
+exports.eraser = async (req, res) => {
   try {
     const email = req.body.email;
-    const user = await User.destroy(req.body, { where: { email } });
+    const user = await Users.destroy({ where: { email } });
     res.status(200).json({ message: "users was delete" });
   } catch (error) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: error.message });
   }
 };
