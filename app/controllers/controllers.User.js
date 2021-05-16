@@ -42,10 +42,17 @@ exports.update = async (req, res) => {
     const email = req.body.email;
 
     const user = await User.update(req.body, { where: { email } });
-  }catch(err){
-
-    res.status(500).json({message: err.message})
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
 //destroy
+exports.delete = async (req, res) => {
+  try {
+    const email = req.body.email;
+    const user = await User.delete(req.body, { where: { email } });
+  } catch (error) {
+    res.status(500).json({ message: err.message });
+  }
+};
