@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 const db = require("./app/models");
 const user = require("./app/routes/routes.User.js");
+const games = require("./app/routes/routes.Games.js");
 
 var corsOptions = {
   origin: "http://localhost:3000",
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 db.sequelize.sync();
 
 app.use("/users", user);
+app.use("/games",games);
 
 app.get("/", (req, res) => {
   res.json({ message: "hola pinche putita" });
