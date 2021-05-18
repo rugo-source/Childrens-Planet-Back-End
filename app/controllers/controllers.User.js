@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
       email: req.body.email,
       age: req.body.age,
       password,
-      role: req.body.role,
+      role: "USER",
     };
     const usersData = await Users.create(user);
     res.status(200).send(usersData);
@@ -39,9 +39,15 @@ exports.findOne = async (req, res) => {
 //update
 exports.update = async (req, res) => {
   try {
-    const email = req.body.email;
+    const email = req.params.email;
 
-    const user = await User.update(req.body, { where: { email } });
+    const user = await Users.update(req.body, { where: { email } });
+
+    if (user == 0) {
+      res.status(505).json({ message: "Cannot update" });
+    } else {
+      res.status(200).json({ message: `User was successfully update ${user}` });
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

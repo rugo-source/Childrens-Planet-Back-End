@@ -10,7 +10,7 @@ const {
 
 router.post("/registro", create);
 router.post("/login", findOne);
-router.put("/update", update);
+router.put("/:email/update", update);
 router.get("/users/:email", findAll);
 router.post("/delete", eraser);
 
