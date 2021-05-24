@@ -54,20 +54,32 @@ exports.update = async (req, res) => {
 };
 //find all
 exports.findAll = async (req, res) => {
-  const email = req.query.email;
-
-  Users.findAll({ where: email })
-    .then((user) => {
-      res.send(user);
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
-    });
+  const role = req.params.role;
+  if (role === "ADMI") {
+    Users.findAll({ where: { role: "ADMI" } })
+      .then((user) => {
+        res.send(user);
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err.message });
+      });
+  } else if (role === "USER") {
+    Users.findAll({ where: { role: "USER" } })
+      .then((user) => {
+        res.send(user);
+      })
+      .catch((err) => {
+        res.status(500).send({ message: err.message });
+      });
+  }else{
+    res.status(403).send({message:"Forbidden route"})
+  }
 };
+
 //destroy
 exports.eraser = async (req, res) => {
   try {
-    const email = req.body.email;
+    const email = req.params.email;
     const user = await Users.destroy({ where: { email } });
     res.status(200).json({ message: "users was delete" });
   } catch (error) {

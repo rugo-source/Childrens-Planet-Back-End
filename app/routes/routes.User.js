@@ -11,7 +11,7 @@ const {
 router.post("/registro", create);
 router.post("/login", findOne);
 router.put("/:email/update", update);
-router.get("/users/:email", findAll);
-router.post("/delete", eraser);
+router.get("/users/:role", findAll);
+router.post("/delete/:email", eraser);
 
 module.exports = router;

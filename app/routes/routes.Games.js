@@ -5,7 +5,7 @@ const {
 } = require("./../controllers/controllers.Games.js");
 
 
-router.get("/games/:amount", findAll);
+router.get("/games", findAll);
 
 
 module.exports = router;

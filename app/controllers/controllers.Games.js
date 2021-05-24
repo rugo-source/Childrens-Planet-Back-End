@@ -3,7 +3,6 @@ const Game = db.Game;
 const {Op}=require("sequelize");
 
 exports.findAll = async (req, res) => {
-    const amount = req.query.amount;
    
     Game.findAll({ where: { amount: {[Op.or]: {[Op.gt]: 0}}}})
       .then((games) => {
