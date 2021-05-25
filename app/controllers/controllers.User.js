@@ -33,7 +33,9 @@ exports.findOne = async (req, res) => {
     : ((validatePassword = await validate(password, user.password)),
       !validatePassword
         ? res.status(400).json({ error: "invalid password" })
-        : res.send(user));
+        : res
+            .status(200)
+            .json({ name: user.name, email: user.email, role: user.role }));
 };
 
 //update
@@ -46,7 +48,7 @@ exports.update = async (req, res) => {
     if (user == 0) {
       res.status(505).json({ message: "Cannot update" });
     } else {
-      res.status(200).json({ message: `User was successfully update ${user}` });
+      res.status(200).send(user);
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -71,8 +73,8 @@ exports.findAll = async (req, res) => {
       .catch((err) => {
         res.status(500).send({ message: err.message });
       });
-  }else{
-    res.status(403).send({message:"Forbidden route"})
+  } else {
+    res.status(403).send({ message: "Forbidden route" });
   }
 };
 
