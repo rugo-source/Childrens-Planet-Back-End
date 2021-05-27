@@ -1,6 +1,7 @@
 const db = require("./../models");
 const Users = db.Users;
-const { encrypt, validate } = require("./controllers.encrypt");
+const { encrypt, validate } = require("./userServices/controllers.encrypt");
+const { userFilter } = require("./userServices/controllers.user.trasnform");
 //create
 exports.create = async (req, res) => {
   try {
@@ -24,6 +25,7 @@ exports.findOne = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   let validatePassword;
+  let response;
 
   const user = await Users.findOne({
     where: { email },
@@ -33,9 +35,8 @@ exports.findOne = async (req, res) => {
     : ((validatePassword = await validate(password, user.password)),
       !validatePassword
         ? res.status(400).json({ error: "invalid password" })
-        : res
-            .status(200)
-            .json({ name: user.name, email: user.email, role: user.role }));
+        : (response = await userFilter(user)),
+      res.status(200).send(response));
 };
 
 //update
