@@ -9,9 +9,12 @@ module.exports = (sequelize, Sequelize) => {
 		amount: {
 			type: Sequelize.INTEGER,
 		},
-		amountU:{
+		amountU: {
 			type: Sequelize.INTEGER,
-		}
+		},
+		user: {
+			type: Sequelize.STRING,
+		},
 	});
 	return Game;
 };
