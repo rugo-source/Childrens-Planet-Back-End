@@ -1,9 +1,9 @@
 const db = require("./../models");
 const Game = db.Game;
-const { Op } = require("sequelize");
+const { sequelize,Op } = require("sequelize");
 
 exports.findAll = async (req, res) => {
-  Game.findAll({ where: { amount: { [Op.or]: { [Op.gt]: 0 } } } })
+  Game.findAll({ where: { amount: { [Op.or]: { [Op.gt]: 0 } } ,user: { [Op.is]: null,} }, order:[  ['id', 'ASC'],], })
     .then((games) => {
       res.send(games);
     })
