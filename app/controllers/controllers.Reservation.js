@@ -19,7 +19,24 @@ exports.create = async (req, res) => {
         { where: { names: game } }
       );
     }
-    res.status(200).json({message:"Registration was successfully"})
+    res.status(200).json({ message: "Registration was successfully" });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+exports.findAllbyUser = async (req, res) => {
+  const user = req.params.user;
+  try {
+    const reservation = await Reservation.findAll({
+      where: { userEmail: user },
+    });
+    if (reservation) {
+      const table = await Game.findAll({ where: { user } });
+      res.status(200).json({ reservation, table });
+    } else {
+      res.status(404).json({ message: "have not reservation" });
+    }
   } catch (err) {
     res.status(500).json(err.message);
   }
