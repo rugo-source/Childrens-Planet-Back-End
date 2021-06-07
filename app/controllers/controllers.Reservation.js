@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
 
     for (let game of games) {
       const gamesReservatio = await Game.update(
-        { user: req.body.email },
+        { user: req.body.email, reservationId:reservationData.id},
         { where: { names: game } }
       );
     }
